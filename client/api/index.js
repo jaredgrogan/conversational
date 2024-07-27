@@ -1,17 +1,7 @@
-// client/api/index.js
-const { createServer } = require('http');
-const { parse } = require('url');
-const next = require('next');
+// client/src/index.js
+import React from 'react';
+import ReactDOM from 'react-dom';
+import App from './App';
 
-const app = next({ dev: process.env.NODE_ENV !== 'production' });
-const handle = app.getRequestHandler();
+ReactDOM.render(<App />, document.getElementById('root'));
 
-app.prepare().then(() => {
-  createServer((req, res) => {
-    const parsedUrl = parse(req.url, true);
-    handle(req, res, parsedUrl);
-  }).listen(3000, err => {
-    if (err) throw err;
-    console.log('> Ready on http://localhost:3000');
-  });
-});
